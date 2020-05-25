@@ -1,0 +1,24 @@
+experiment running time : 2020-05-17 16:18:46
+Circle aggregation
+reg time with K : 3
+249.6978498
+rep time with K : 3
+133.97137749499998
+reg time with K : 4
+251.663324998
+rep time with K : 4
+137.0333936
+reg time with K : 5
+251.7448802
+rep time with K : 5
+139.7291119
+reg time with K : 6
+251.597497207
+rep time with K : 6
+138.67102589700002
+reg time with K : 7
+251.7889305
+rep time with K : 7
+139.0809878
+
+experiment running time : 2020-05-17 16:51:14
