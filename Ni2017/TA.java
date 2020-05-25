@@ -35,7 +35,7 @@ public class TA {
 
 	// initialization of the Elliptic Curve
 	private void intializeEllipticCruve() {
-		pairing = PairingFactory.getPairing("a256.properties");
+		pairing = PairingFactory.getPairing("cg.properties");
 		generator = pairing.getG1().newRandomElement().getImmutable();
 		order = pairing.getG1().getOrder();
 	}
