@@ -33,6 +33,11 @@ public class Agg {
     ArrayList<Element> alSharedKeysWithUser = new ArrayList<Element>();
 
     private StopWatch stopWatch;
+
+    public StopWatch getStopWatch() {
+        return stopWatch;
+    }
+
     public Agg(ParamsECC ps) throws IOException {
         this.stopWatch = new StopWatch("agg");
         this.id = Utils.randomlong();

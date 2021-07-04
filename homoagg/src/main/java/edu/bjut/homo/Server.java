@@ -226,10 +226,10 @@ public class Server {
     }
 
     public void getRepMessage(RepMessage rep) throws IOException {
-        this.stopWatch.start("report_res");
         if (null == rep) {
             return;
         }
+        this.stopWatch.start("report_res");
         if (signCheck(rep) == false) {
             System.out.println("server check failed");
         }

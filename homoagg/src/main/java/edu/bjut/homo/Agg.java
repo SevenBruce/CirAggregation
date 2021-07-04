@@ -74,12 +74,12 @@ public class Agg {
     }
 
     public RepMessage getRepMessage(RepMessage rep) throws IOException {
-        this.stopWatch.start("resp_agg");
         alRep.add(rep);
         
         if (alRep.size() < Params.METERS_NUM)
             return null;
 
+        this.stopWatch.start("resp_agg");
         if (checkingIncomeMessage() == false) {
             System.out.println("check failed at the agg side");
             return null;

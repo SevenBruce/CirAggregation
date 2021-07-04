@@ -2,6 +2,9 @@ package edu.bjut.ni;
 
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import edu.bjut.TimeStastic;
 import edu.bjut.ni.messages.ParamsECC;
 import edu.bjut.ni.messages.RegMessage;
@@ -11,6 +14,7 @@ import it.unisa.dia.gas.jpbc.Element;
 
 public class myMain {
 
+    private static final Logger LOG = LoggerFactory.getLogger(myMain.class);
     private static Out out;
 
     private static TA ta;
@@ -24,12 +28,12 @@ public class myMain {
 
         dataAggPhase();
 
-        TimeStastic.logTime("agg", agg.getStopWatch().getTaskInfo());
-        TimeStastic.logTime("ta", ta.getStopWatch().getTaskInfo());
+        TimeStastic.logTime("agg", agg.getStopWatch().getTaskInfo(), LOG);
+        TimeStastic.logTime("ta", ta.getStopWatch().getTaskInfo(), LOG);
         for (int i = 0; i < meters.length; ++i) {
-            TimeStastic.logTime("meter" + i, meters[i].getStopWatch().getTaskInfo());
+            TimeStastic.logTime("meter" + i, meters[i].getStopWatch().getTaskInfo(), LOG);
         }
-        TimeStastic.logTime("center", center.getStopWatch().getTaskInfo());
+        TimeStastic.logTime("center", center.getStopWatch().getTaskInfo(), LOG);
         out.close();
         // Runtime.getRuntime().exec("shutdown -s");
         

@@ -1,14 +1,11 @@
 package edu.bjut;
 
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.util.StopWatch.TaskInfo;
 
 public class TimeStastic {
 
-    private static Logger LOG = LoggerFactory.getLogger(TimeStastic.class);
-
-    public static void logTime(String name, TaskInfo[] infos) {
+    public static void logTime(String name, TaskInfo[] infos, Logger LOG) {
         StringBuilder nameBuilder = new StringBuilder();
         StringBuilder timeBuilder = new StringBuilder();
         nameBuilder.append(name + ":");

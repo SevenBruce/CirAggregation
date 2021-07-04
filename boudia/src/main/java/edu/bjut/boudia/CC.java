@@ -33,6 +33,11 @@ public class CC {
     ArrayList<Element> alSharedKeysWithAgg = new ArrayList<Element>();
 
     private StopWatch stopWatch;
+
+    public StopWatch getStopWatch() {
+        return stopWatch;
+    }
+
     public CC() throws IOException {
         this.pairing = PairingFactory.getPairing("cg.properties");
 

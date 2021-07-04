@@ -19,6 +19,10 @@ public class KGC {
     private Element rx;
     private StopWatch stopWatch;
 
+    public StopWatch getStopWatch() {
+        return stopWatch;
+    }
+
     public KGC() {
         this.stopWatch = new StopWatch("kgc");
         this.stopWatch.start("kgc_init");

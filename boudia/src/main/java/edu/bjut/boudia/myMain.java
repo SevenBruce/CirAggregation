@@ -1,14 +1,19 @@
 package edu.bjut.boudia;
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import edu.bjut.boudia.messages.ParamsECC;
 import edu.bjut.boudia.messages.RegMessage;
 import edu.bjut.boudia.messages.RegMessageFromServer2User;
 import edu.bjut.boudia.messages.RepMessage2;
 import it.unisa.dia.gas.jpbc.Element;
+import edu.bjut.TimeStastic;
 
 public class myMain {
 
+    private static final Logger LOG = LoggerFactory.getLogger(myMain.class);
     private static Out out;
     private static Agg agg;
     private static CC server;
@@ -22,9 +27,12 @@ public class myMain {
         aggRegistration();
 
         dataAggregation();
-
+        TimeStastic.logTime("agg", agg.getStopWatch().getTaskInfo(), LOG);
+        TimeStastic.logTime("server", server.getStopWatch().getTaskInfo(), LOG);
+        for (int i = 0; i < meters.length; ++i) {
+            TimeStastic.logTime("meter_" + i, meters[i].getStopWatch().getTaskInfo(), LOG);
+        }
         out.close();
-        Runtime.getRuntime().exec("shutdown -s");
     }
 
     private static void entitiesInitialization() throws IOException {

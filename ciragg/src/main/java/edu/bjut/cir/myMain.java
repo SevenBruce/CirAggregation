@@ -41,11 +41,11 @@ public class myMain {
 
         // Runtime.getRuntime().exec("shutdown -s");
         out.close();
-        TimeStastic.logTime("agg", agg.getStopWatch().getTaskInfo());
+        TimeStastic.logTime("agg", agg.getStopWatch().getTaskInfo(), LOG);
         for (int i = 0; i < meter.length; ++i) {
-            TimeStastic.logTime("meter" + i, meter[i].getStopWatch().getTaskInfo());
+            TimeStastic.logTime("meter" + i, meter[i].getStopWatch().getTaskInfo(), LOG);
         }
-        TimeStastic.logTime("utilitysupplier", supplier.getStopWatch().getTaskInfo());
+        TimeStastic.logTime("utilitysupplier", supplier.getStopWatch().getTaskInfo(), LOG);
     }
 
 

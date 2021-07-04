@@ -1,6 +1,10 @@
 package edu.bjut.homo;
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import edu.bjut.TimeStastic;
 import edu.bjut.homo.messages.ParamsECC;
 import edu.bjut.homo.messages.PublicInfo;
 import edu.bjut.homo.messages.RegBack;
@@ -9,6 +13,7 @@ import edu.bjut.homo.messages.RepMessage;
 
 public class myMain {
 
+    private static final Logger LOG = LoggerFactory.getLogger(myMain.class);
     private static long sl;
     private static long el;
     private static Out out;
@@ -24,11 +29,15 @@ public class myMain {
         entitiesInitialization();
         serverRegistration();
         aggregatorRegistration();
-        
-        normalReportingPhase();
 
+        normalReportingPhase();
         out.close();
-        Runtime.getRuntime().exec("shutdown -s");
+        TimeStastic.logTime("agg", agg.getStopWatch().getTaskInfo(), LOG);
+        TimeStastic.logTime("server", server.getStopWatch().getTaskInfo(), LOG);
+        TimeStastic.logTime("kgc", kgc.getStopWatch().getTaskInfo(), LOG);
+        for (int i = 0; i < sm.length; ++i) {
+            TimeStastic.logTime("sm_" + i, sm[i].getStopWatch().getTaskInfo(), LOG);
+        }
     }
     
     private static void entitiesInitialization() throws IOException {
