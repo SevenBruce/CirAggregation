@@ -1,0 +1,28 @@
+package edu.bjut;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.util.StopWatch.TaskInfo;
+
+public class TimeStastic {
+
+    private static Logger LOG = LoggerFactory.getLogger(TimeStastic.class);
+
+    public static void logTime(String name, TaskInfo[] infos) {
+        StringBuilder nameBuilder = new StringBuilder();
+        StringBuilder timeBuilder = new StringBuilder();
+        nameBuilder.append(name + ":");
+        timeBuilder.append(name + ":");
+        for (int i = 0; i < infos.length - 1; ++i) {
+            nameBuilder.append(infos[i].getTaskName() + ",");
+            timeBuilder.append(infos[i].getTimeMillis() + ",");
+        }
+        if (infos.length > 0) {
+            nameBuilder.append(infos[infos.length - 1].getTaskName());
+            timeBuilder.append(infos[infos.length - 1].getTimeMillis());
+        }
+        LOG.info(nameBuilder.toString());
+        LOG.info(timeBuilder.toString());
+    }
+    
+}

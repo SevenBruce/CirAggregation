@@ -2,6 +2,11 @@ package edu.bjut.cir;
 
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.util.StopWatch;
+import org.springframework.util.StopWatch.TaskInfo;
+
 import edu.bjut.cir.messages.MeterRegBack;
 import edu.bjut.cir.messages.MeterRegMessage;
 import edu.bjut.cir.messages.ParamsECC;
@@ -9,9 +14,11 @@ import edu.bjut.cir.messages.PublicInfo;
 import edu.bjut.cir.messages.RegBack;
 import edu.bjut.cir.messages.RegMessage;
 import edu.bjut.cir.messages.RepMessage;
+import edu.bjut.TimeStastic;
 
 public class myMain {
 
+    private static Logger LOG = LoggerFactory.getLogger(myMain.class);
     private static Out out;
 
     private static TTP ttp;
@@ -32,9 +39,15 @@ public class myMain {
 
         aggPhaseWithVaryingRange();
 
-        Runtime.getRuntime().exec("shutdown -s");
+        // Runtime.getRuntime().exec("shutdown -s");
         out.close();
+        TimeStastic.logTime("agg", agg.getStopWatch().getTaskInfo());
+        for (int i = 0; i < meter.length; ++i) {
+            TimeStastic.logTime("meter" + i, meter[i].getStopWatch().getTaskInfo());
+        }
+        TimeStastic.logTime("utilitysupplier", supplier.getStopWatch().getTaskInfo());
     }
+
 
     /**
      * simulate the data aggregation phase meter number = 60; k is varying in

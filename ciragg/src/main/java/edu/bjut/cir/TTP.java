@@ -97,6 +97,7 @@ public class TTP {
         Element front = alKeys.get(arrayIndexPre);
         Element rear = alKeys.get(arrayIndexRaer);
         MeterRegBack back = new MeterRegBack(xi, front, rear);
+        this.stopWatch.stop();
         return back;
     }
     

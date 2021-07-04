@@ -23,6 +23,10 @@ public class Agg {
 
     private StopWatch stopWatch;
 
+    public StopWatch getStopWatch() {
+        return stopWatch;
+    }
+
     public Agg() throws IOException {
         this.stopWatch = new StopWatch("agg");
         this.id = Utils.randomlong();
@@ -43,13 +47,13 @@ public class Agg {
     }
 
     public RepMessage getRepMessage(RepMessage rep) throws IOException {
-        this.stopWatch.start("get_repMsg");
 
         alRep.add(rep);
 
         if (alRep.size() < Params.METER_NUM)
             return null;
 
+        this.stopWatch.start("get_repMsg");
         if (checkingIncomeMessage() == false) {
             System.out.println("check failed at the agg side");
             return null;

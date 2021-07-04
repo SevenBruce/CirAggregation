@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+  <!-- <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <Pattern>%cyan(%d{HH:mm:ss.SSS}) %gray([%thread]) %highlight(%-5level) %magenta(%logger{36}) - %msg%n</Pattern>
+    </encoder>
+  </appender> -->
+  <timestamp key="bySecond" datePattern="'T'HHmmss"/>
+
+  <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <prudent>true</prudent>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+        <fileNamePattern>log_%d{yyyy-MM-dd}${bySecond}.log</fileNamePattern>
+    </rollingPolicy>
+
+    <encoder>
+        <pattern>${HOSTNAME} %d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+    </encoder>
+</appender>
+  <logger name = "edu.bjut" level="info"/>
+
+
+  <root level="debug">
+    <appender-ref ref="FILE" />
+  </root>
+</configuration>

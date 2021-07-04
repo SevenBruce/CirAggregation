@@ -42,6 +42,10 @@ public class UtilitySupplier {
 
     private StopWatch stopWatch;
 
+    public StopWatch getStopWatch() {
+        return stopWatch;
+    }
+
     public UtilitySupplier() throws IOException {
         KeyGeneration(1024, 64);
         this.id = Utils.randomlong();
@@ -204,12 +208,11 @@ public class UtilitySupplier {
     }
 
     public void getRepMessage(RepMessage rep) {
-        this.stopWatch.start("rep_msg");
         // TODO Auto-generated method stub
         if (null == rep) {
             return;
         }
-
+        this.stopWatch.start("rep_msg");
         if (true == checkingIncomeMessage(rep)) {
             // System.out.println("The sum is : " + Decryption(rep.getCi()));
             retriveData(Decryption(rep.getCi()));

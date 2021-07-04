@@ -2,6 +2,7 @@ package edu.bjut.ni;
 
 import java.io.IOException;
 
+import edu.bjut.TimeStastic;
 import edu.bjut.ni.messages.ParamsECC;
 import edu.bjut.ni.messages.RegMessage;
 import edu.bjut.ni.messages.RepAgg;
@@ -22,8 +23,16 @@ public class myMain {
         out = new Out("Ni2017_cirAgg_2020May17_1.time");
 
         dataAggPhase();
+
+        TimeStastic.logTime("agg", agg.getStopWatch().getTaskInfo());
+        TimeStastic.logTime("ta", ta.getStopWatch().getTaskInfo());
+        for (int i = 0; i < meters.length; ++i) {
+            TimeStastic.logTime("meter" + i, meters[i].getStopWatch().getTaskInfo());
+        }
+        TimeStastic.logTime("center", center.getStopWatch().getTaskInfo());
         out.close();
-        Runtime.getRuntime().exec("shutdown -s");
+        // Runtime.getRuntime().exec("shutdown -s");
+        
     }
 
     /**

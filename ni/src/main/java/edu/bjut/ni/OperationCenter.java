@@ -31,6 +31,10 @@ public class OperationCenter {
 
     private StopWatch stopWatch;
 
+    public StopWatch getStopWatch() {
+        return stopWatch;
+    }
+
     public OperationCenter(ParamsECC ps) throws IOException {
         this.stopWatch = new StopWatch("op_center");
         this.pairing = ps.getPairing();

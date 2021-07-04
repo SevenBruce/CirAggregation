@@ -2,7 +2,7 @@ package edu.bjut.ni;
 public class Params {
     
 //	public final static int EXPERIMENT_REPEART_TIMES = 1000; /* times of running the experiments */
-    public final static int EXPERIMENT_TIMES = 1000; /* times of running the experiments */
+    public final static int EXPERIMENT_TIMES = 1; /* times of running the experiments */
 //	public final static int EXPERIMENT_TIMES = 1; /* times of running the experiments */
     
     public static int ARRAY_OF_METERS_NUM[] = {20,30,40,50,60}; /* number of smart meters */
