@@ -37,6 +37,10 @@ public class Meters {
         return stopWatch;
     }
 
+    public void setStopWatch(StopWatch stopWatch) {
+        this.stopWatch = stopWatch;
+    }
+
     public Meters(ParamsECC ps) throws IOException {
 
         this.id = Utils.randomlong();

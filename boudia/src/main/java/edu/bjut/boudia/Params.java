@@ -2,7 +2,7 @@ package edu.bjut.boudia;
 
 public class Params {
 
-    public final static int EXPERIMENT_TIMES = 100; /* times of running the experiments */
+    public final static int EXPERIMENT_TIMES = 1; /* times of running the experiments */
 //	public final static int EXPERIMENT_REPEART_TIMES = 20; /* times of running the experiments */
 //	public final static int EXPERIMENT_TIMES = 3; /* times of running the experiments */
     

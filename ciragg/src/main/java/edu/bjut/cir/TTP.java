@@ -29,10 +29,17 @@ public class TTP {
 
     private StopWatch stopWatch;
 
+    public StopWatch getStopWatch() {
+        return stopWatch;
+    }
+
+    public void setStopWatch(StopWatch stopWatch) {
+        this.stopWatch = stopWatch;
+    }
+
     public TTP() {
         this.stopWatch = new StopWatch("TTP");
         intializeEllipticCruve();
-
     }
 
     public ParamsECC publishParamsECC() {

@@ -41,6 +41,10 @@ public class Meter {
         return stopWatch;
     }
 
+    public void setStopWatch(StopWatch stopWatch) {
+        this.stopWatch = stopWatch;
+    }
+
     public Meter(ParamsECC ps) throws IOException {
         this.id = Utils.randomlong();
         this.stopWatch = new StopWatch("meter_" + id);
@@ -53,6 +57,7 @@ public class Meter {
     }
 
     public void setPublicInfo(PublicInfo pubInfo) {
+        this.stopWatch.start("setPublcInfo");
         this.n = pubInfo.getN();
         this.gg = pubInfo.getG();
         this.nsquare = pubInfo.getNsquare();
@@ -62,6 +67,7 @@ public class Meter {
         this.z = new BigInteger[pubInfo.getZ().length];
         System.arraycopy(pubInfo.getA(), 0, this.a, 0, pubInfo.getA().length);
         System.arraycopy(pubInfo.getZ(), 0, this.z, 0, pubInfo.getZ().length);
+        this.stopWatch.stop();
     }
 
     public MeterRegMessage genRegMesssage() {

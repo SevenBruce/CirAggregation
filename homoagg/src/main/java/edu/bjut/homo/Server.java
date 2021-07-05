@@ -57,6 +57,10 @@ public class Server {
         return stopWatch;
     }
 
+    public void setStopWatch(StopWatch stopWatch) {
+        this.stopWatch = stopWatch;
+    }
+
     public Server(ParamsECC ps) throws IOException {
         this.stopWatch = new StopWatch("server");
         this.stopWatch.start("server_init");

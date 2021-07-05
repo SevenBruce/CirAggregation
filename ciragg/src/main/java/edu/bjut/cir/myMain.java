@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.StopWatch;
 
 import edu.bjut.TimeStastic;
 import edu.bjut.cir.messages.MeterRegBack;
@@ -36,14 +37,8 @@ public class myMain {
         aggPhaseWithVaryingK();
 
         aggPhaseWithVaryingRange();
-
         // Runtime.getRuntime().exec("shutdown -s");
         out.close();
-        TimeStastic.logTime("agg", agg.getStopWatch().getTaskInfo(), LOG);
-        for (int i = 0; i < meter.length; ++i) {
-            TimeStastic.logTime("meter" + i, meter[i].getStopWatch().getTaskInfo(), LOG);
-        }
-        TimeStastic.logTime("utilitysupplier", supplier.getStopWatch().getTaskInfo(), LOG);
     }
 
 
@@ -224,6 +219,15 @@ public class myMain {
 
     // 111
     private static long meterRegTime(int k) throws IOException {
+        LOG.info("meterRegTime_"+k);
+        // time stastic init
+        for (int i = 0; i < meter.length; ++i) {
+            meter[i].setStopWatch(
+                new StopWatch("meter_"+meter[i].getMeterId()));
+        }
+        supplier.setStopWatch(new StopWatch("supplier"));
+        ttp.setStopWatch(new StopWatch("ttp"));
+
         long sl = System.nanoTime();
         for (int i = 0; i < meter.length; i++) {
             MeterRegMessage reg = meter[i].genRegMesssage();
@@ -234,14 +238,27 @@ public class myMain {
             MeterRegBack back = ttp.assignMeterKeys(meter[i].getMeterId(), k);
             meter[i].getRegBack(back);
         }
-
         setMeterPublicInfo();
         long el = System.nanoTime();
+        // time stastic log output
+        for (int i = 0; i < meter.length; ++i) {
+            TimeStastic.logTime(meter[i].getStopWatch().getId(), meter[i].getStopWatch().getTaskInfo(), LOG);
+        }
+        TimeStastic.logTime(supplier.getStopWatch().getId(), supplier.getStopWatch().getTaskInfo(), LOG);
+        TimeStastic.logTime(ttp.getStopWatch().getId(), ttp.getStopWatch().getTaskInfo(), LOG);
         return (el - sl);
     }
 
     // 111
     private static long meterRepTime() throws IOException {
+        LOG.info("meterRepTime");
+        // time stastic init
+        for (int i = 0; i < meter.length; ++i) {
+            meter[i].setStopWatch(
+                new StopWatch("meter_"+meter[i].getMeterId()));
+        }
+        agg.setStopWatch(new StopWatch("agg"));
+        supplier.setStopWatch(new StopWatch("supplier"));
 
         long sl = System.nanoTime();
         for (int i = 0; i < Params.METER_NUM; i++) {
@@ -250,6 +267,13 @@ public class myMain {
             supplier.getRepMessage(repAgg);
         }
         long el = System.nanoTime();
+
+        // time stastic log output
+        for (int i = 0; i < meter.length; ++i) {
+            TimeStastic.logTime(meter[i].getStopWatch().getId(), meter[i].getStopWatch().getTaskInfo(), LOG);
+        }
+        TimeStastic.logTime(agg.getStopWatch().getId(), agg.getStopWatch().getTaskInfo(), LOG);
+        TimeStastic.logTime(supplier.getStopWatch().getId(), supplier.getStopWatch().getTaskInfo(), LOG);
         return (el - sl);
     }
 

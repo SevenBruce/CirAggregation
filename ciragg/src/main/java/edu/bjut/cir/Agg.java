@@ -27,6 +27,10 @@ public class Agg {
         return stopWatch;
     }
 
+    public void setStopWatch(StopWatch stopWatch) {
+        this.stopWatch = stopWatch;
+    }
+
     public Agg() throws IOException {
         this.stopWatch = new StopWatch("agg");
         this.id = Utils.randomlong();

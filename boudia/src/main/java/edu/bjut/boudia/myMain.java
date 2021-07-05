@@ -3,6 +3,7 @@ import java.io.IOException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.StopWatch;
 
 import edu.bjut.boudia.messages.ParamsECC;
 import edu.bjut.boudia.messages.RegMessage;
@@ -27,11 +28,6 @@ public class myMain {
         aggRegistration();
 
         dataAggregation();
-        TimeStastic.logTime("agg", agg.getStopWatch().getTaskInfo(), LOG);
-        TimeStastic.logTime("server", server.getStopWatch().getTaskInfo(), LOG);
-        for (int i = 0; i < meters.length; ++i) {
-            TimeStastic.logTime("meter_" + i, meters[i].getStopWatch().getTaskInfo(), LOG);
-        }
         out.close();
     }
 
@@ -112,6 +108,14 @@ public class myMain {
     }
 
     private static long oneTimeMeterRegTime() throws IOException {
+        // time stastic log init
+        LOG.info("oneTimeMeterRegTime");
+        server.setStopWatch(new StopWatch("regCC"));
+        agg.setStopWatch(new StopWatch("agg"));
+        for (int i = 0; i < meters.length; ++i) {
+            meters[i].setStopWatch(new StopWatch("meter_"+meters[i].getId()));
+        }
+
         long sl = System.nanoTime();
         RegMessageFromServer2User regCC = server.getPublicKeysAndReferenceNumbers();
         for (int i = 0; i < meters.length; i++) {
@@ -122,11 +126,24 @@ public class myMain {
             meters[i].getRegFromCC(regCC);
         }
         long el = System.nanoTime();
+        // time stastic log output
+        TimeStastic.logTime("server", server.getStopWatch().getTaskInfo(), LOG);
+        TimeStastic.logTime("agg", agg.getStopWatch().getTaskInfo(), LOG);
+        for (int i = 0; i < meters.length; ++i) {
+            TimeStastic.logTime(meters[i].getStopWatch().getId(), meters[i].getStopWatch().getTaskInfo(), LOG);
+        }
         agg.reSetRegMessages();
         return (el - sl);
     }
 
     private static long oneTimeMeterRepTime() throws IOException {
+        LOG.info("oneTimeMeterRepTime");
+        // time stastic log init
+        server.setStopWatch(new StopWatch("regCC"));
+        agg.setStopWatch(new StopWatch("agg"));
+        for (int i = 0; i < meters.length; ++i) {
+            meters[i].setStopWatch(new StopWatch("meter_"+meters[i].getId()));
+        }
 
         long sl = System.nanoTime();
         for (int i = 0; i < Params.METERS_NUM; i++) {
@@ -135,6 +152,13 @@ public class myMain {
             server.getRepMessage(repAgg);
         }
         long el = System.nanoTime();
+
+        // time stastic log output
+        TimeStastic.logTime("server", server.getStopWatch().getTaskInfo(), LOG);
+        TimeStastic.logTime("agg", agg.getStopWatch().getTaskInfo(), LOG);
+        for (int i = 0; i < meters.length; ++i) {
+            TimeStastic.logTime(meters[i].getStopWatch().getId(), meters[i].getStopWatch().getTaskInfo(), LOG);
+        }
         return (el - sl);
     }
 

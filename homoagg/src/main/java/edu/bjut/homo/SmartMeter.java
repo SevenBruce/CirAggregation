@@ -36,6 +36,14 @@ public class SmartMeter {
         return stopWatch;
     }
 
+    public void setStopWatch(StopWatch stopWatch) {
+        this.stopWatch = stopWatch;
+    }
+
+    public long getId() {
+        return id;
+    }
+
     public SmartMeter(ParamsECC ps) throws IOException {
         this.id = Utils.randomlong();
         this.pairing = ps.getPairing();

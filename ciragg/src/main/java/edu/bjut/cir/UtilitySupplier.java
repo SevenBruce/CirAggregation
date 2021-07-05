@@ -46,6 +46,10 @@ public class UtilitySupplier {
         return stopWatch;
     }
 
+    public void setStopWatch(StopWatch stopWatch) {
+        this.stopWatch = stopWatch;
+    }
+    
     public UtilitySupplier() throws IOException {
         KeyGeneration(1024, 64);
         this.id = Utils.randomlong();
@@ -118,9 +122,11 @@ public class UtilitySupplier {
 
     // initialization of the vector to separate data into different colums
     public PublicInfo getPublicInfo() {
+        this.stopWatch.start("getPublic");
         generateRangeZ();
         generateRangeA(this.z);
         PublicInfo pi = new PublicInfo(this.n, this.nsquare, this.g, this.bitLength, this.z, this.a);
+        this.stopWatch.stop();
         return pi;
     }
 

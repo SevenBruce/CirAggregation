@@ -23,6 +23,10 @@ public class KGC {
         return stopWatch;
     }
 
+    public void setStopWatch(StopWatch stopWatch) {
+        this.stopWatch = stopWatch;
+    }
+
     public KGC() {
         this.stopWatch = new StopWatch("kgc");
         this.stopWatch.start("kgc_init");

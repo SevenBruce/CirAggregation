@@ -28,14 +28,7 @@ public class myMain {
 
         dataAggPhase();
 
-        TimeStastic.logTime("agg", agg.getStopWatch().getTaskInfo(), LOG);
-        TimeStastic.logTime("ta", ta.getStopWatch().getTaskInfo(), LOG);
-        for (int i = 0; i < meters.length; ++i) {
-            TimeStastic.logTime("meter" + i, meters[i].getStopWatch().getTaskInfo(), LOG);
-        }
-        TimeStastic.logTime("center", center.getStopWatch().getTaskInfo(), LOG);
         out.close();
-        // Runtime.getRuntime().exec("shutdown -s");
         
     }
 

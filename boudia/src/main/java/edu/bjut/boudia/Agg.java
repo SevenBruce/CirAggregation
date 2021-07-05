@@ -38,6 +38,10 @@ public class Agg {
         return stopWatch;
     }
 
+    public void setStopWatch(StopWatch stopWatch) {
+        this.stopWatch = stopWatch;
+    }
+
     public Agg(ParamsECC ps) throws IOException {
         this.stopWatch = new StopWatch("agg");
         this.id = Utils.randomlong();
@@ -68,7 +72,6 @@ public class Agg {
         alId.clear();
         alKeys.clear();
         alSharedKeysWithUser.clear();
-        ;
     }
 
     public RegMessage genRegMesssage() {

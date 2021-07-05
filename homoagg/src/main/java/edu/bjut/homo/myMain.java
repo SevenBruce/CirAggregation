@@ -3,6 +3,7 @@ import java.io.IOException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.StopWatch;
 
 import edu.bjut.TimeStastic;
 import edu.bjut.homo.messages.ParamsECC;
@@ -32,12 +33,6 @@ public class myMain {
 
         normalReportingPhase();
         out.close();
-        TimeStastic.logTime("agg", agg.getStopWatch().getTaskInfo(), LOG);
-        TimeStastic.logTime("server", server.getStopWatch().getTaskInfo(), LOG);
-        TimeStastic.logTime("kgc", kgc.getStopWatch().getTaskInfo(), LOG);
-        for (int i = 0; i < sm.length; ++i) {
-            TimeStastic.logTime("sm_" + i, sm[i].getStopWatch().getTaskInfo(), LOG);
-        }
     }
     
     private static void entitiesInitialization() throws IOException {
@@ -147,6 +142,13 @@ public class myMain {
     }
 
     private static long meterRegTime() throws IOException {
+        LOG.info("meterRegTime");
+        // time stastic init
+        kgc.setStopWatch(new StopWatch("kgc"));
+        for (int i = 0; i < sm.length; ++i) {
+            sm[i].setStopWatch(new StopWatch("meter_"+sm[i].getId()));
+        }
+
         sl = System.nanoTime();
         for (int i = 0; i < Params.METERS_NUM; i++) {
             RegMessage reg = sm[i].genRegMesssage();
@@ -154,11 +156,22 @@ public class myMain {
             sm[i].getRegBack(back);
         }
         el = System.nanoTime();
+        // time stastic log output
+        TimeStastic.logTime("kgc", kgc.getStopWatch().getTaskInfo(), LOG);
+        for (int i = 0; i < sm.length; ++i) {
+            TimeStastic.logTime(sm[i].getStopWatch().getId(), sm[i].getStopWatch().getTaskInfo(), LOG);
+        }
         return (el - sl);
     }
 
     private static long oneTimeMeterRepTime(int count) throws IOException {
-
+        LOG.info("oneTimeMeterRepTime");
+        // time stastic init
+        agg.setStopWatch(new StopWatch("agg"));
+        server.setStopWatch(new StopWatch("server"));
+        for (int i = 0; i < sm.length; ++i) {
+            sm[i].setStopWatch(new StopWatch("meter_"+sm[i].getId()));
+        }
         sl = System.nanoTime();
         for (int i = 0; i < Params.METERS_NUM; i++) {
             RepMessage repMessage = sm[i].genSingleRepMessage(count);
@@ -166,6 +179,12 @@ public class myMain {
             server.getRepMessage(repAgg);
         }
         el = System.nanoTime();
+        // time stastic log output
+        TimeStastic.logTime(agg.getStopWatch().getId(), agg.getStopWatch().getTaskInfo(), LOG);
+        TimeStastic.logTime(server.getStopWatch().getId(), server.getStopWatch().getTaskInfo(), LOG);
+        for (int i = 0; i < sm.length; ++i) {
+            TimeStastic.logTime(sm[i].getStopWatch().getId(), sm[i].getStopWatch().getTaskInfo(), LOG);
+        }
         return (el - sl);
     }
 

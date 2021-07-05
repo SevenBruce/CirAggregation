@@ -38,6 +38,10 @@ public class CC {
         return stopWatch;
     }
 
+    public void setStopWatch(StopWatch stopWatch) {
+        this.stopWatch = stopWatch;
+    }
+
     public CC() throws IOException {
         this.pairing = PairingFactory.getPairing("cg.properties");
 

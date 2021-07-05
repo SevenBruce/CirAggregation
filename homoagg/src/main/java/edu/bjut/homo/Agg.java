@@ -37,6 +37,10 @@ public class Agg {
         return stopWatch;
     }
 
+    public void setStopWatch(StopWatch stopWatch) {
+        this.stopWatch = stopWatch;
+    }
+
     public Agg(ParamsECC ps) throws IOException {
         this.stopWatch = new StopWatch("agg");
         this.stopWatch.start("agg_init");

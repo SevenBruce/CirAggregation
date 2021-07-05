@@ -4,7 +4,7 @@ public class Params {
     
 //	public final static int EXPERIMENT_REPEART_TIMES = 500; /* times of running the experiments */
 //	public final static int EXPERIMENT_TIMES = 3; /* times of running the experiments */
-    public final static int EXPERIMENT_TIMES = 100; /* times of running the experiments */
+    public final static int EXPERIMENT_TIMES = 1; /* times of running the experiments */
     
 //	public static int ARRAY_OF_METERS_NUM[] = {10}; /* number of smart meters */
     public static int ARRAY_OF_METERS_NUM[] = {20,30,40,50,60}; /* number of smart meters */
