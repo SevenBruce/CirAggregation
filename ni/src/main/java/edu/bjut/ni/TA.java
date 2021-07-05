@@ -32,6 +32,10 @@ public class TA {
         return stopWatch;
     }
 
+    public void setStopWatch(StopWatch stopWatch) {
+        this.stopWatch = stopWatch;
+    }
+    
     public TA(int meter) {
         this.stopWatch = new StopWatch("ta");
         intializeEllipticCruve();

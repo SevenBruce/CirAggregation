@@ -32,6 +32,10 @@ public class Agg {
         return stopWatch;
     }
 
+    public void setStopWatch(StopWatch stopWatch) {
+        this.stopWatch = stopWatch;
+    }
+
     public Agg(ParamsECC ps) throws IOException {
         this.stopWatch = new StopWatch("agg");
         this.id = Utils.randomlong();
@@ -52,11 +56,14 @@ public class Agg {
         if (alRep.size() < Params.METERS_NUM)
             return null;
 
+        this.stopWatch.start("getRepMsg");
         if (false == checkingIncomeMessage()) {
             System.out.println("check failed at the agg side");
             return null;
         }
-        return sumUpData();
+        RepAgg repAgg = sumUpData(); 
+        this.stopWatch.stop();
+        return repAgg;
     }
 
     public void setH(Element h) throws IOException {

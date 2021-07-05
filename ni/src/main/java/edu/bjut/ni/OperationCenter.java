@@ -35,6 +35,10 @@ public class OperationCenter {
         return stopWatch;
     }
 
+    public void setStopWatch(StopWatch stopWatch) {
+        this.stopWatch = stopWatch;
+    }
+
     public OperationCenter(ParamsECC ps) throws IOException {
         this.stopWatch = new StopWatch("op_center");
         this.pairing = ps.getPairing();
@@ -77,12 +81,14 @@ public class OperationCenter {
         if (null == rep)
             return;
 
+        this.stopWatch.start("RepMsg");
         if (false == checkTheSignatureOfIncomingMessage(rep)) {
             // System.out.println("server check failed");
             return;
         }
 
         double con = getConsumptionData(rep);
+        this.stopWatch.stop();
     }
 
     public int getConsumptionData(RepAgg rep) {

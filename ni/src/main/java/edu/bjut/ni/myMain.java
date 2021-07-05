@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.StopWatch;
 
 import edu.bjut.TimeStastic;
 import edu.bjut.ni.messages.ParamsECC;
@@ -29,6 +30,12 @@ public class myMain {
         dataAggPhase();
 
         out.close();
+
+        out = new Out("Ni2017_cirAgg_2020May17_2.time");
+
+        dataAggPhase1();
+
+        out.close();
         
     }
 
@@ -49,6 +56,24 @@ public class myMain {
             getMeterRegtime(number);
             // oneTimeMeterRegTime();
             // getMeterReptime(number);
+        }
+    }
+
+    /**
+     * simulate the data aggregation phase a meter report one type of data to the
+     * server for analysis.
+     * 
+     * @throws IOException
+     */
+    private static void dataAggPhase1() throws IOException {
+
+        printAndWrite("Ni 2017");
+        for (int number : Params.ARRAY_OF_METERS_NUM) {
+
+            Params.METERS_NUM = number;
+            entitiesInitialization(number);
+            oneTimeMeterRegTime();
+            getMeterReptime(number);
         }
     }
 
@@ -122,6 +147,13 @@ public class myMain {
     }
 
     private static long oneTimeMeterRegTime() throws IOException {
+        LOG.info("oneTimeMeterRegTime");
+        // time stastic init
+        ta.setStopWatch(new StopWatch("ta"));
+        center.setStopWatch(new StopWatch("center"));
+        for (int i = 0; i < meters.length; ++i) {
+            meters[i].setStopWatch(new StopWatch("meter_"+meters[i].getId()));
+        }
 
         long sl = System.nanoTime();
         for (int i = 0; i < meters.length; i++) {
@@ -130,11 +162,25 @@ public class myMain {
             meters[i].getRegBackOC(center.getMeterReg(reg));
         }
         long el = System.nanoTime();
+
+         // time stastic log output
+         TimeStastic.logTime(ta.getStopWatch().getId(), ta.getStopWatch().getTaskInfo(), LOG);
+         TimeStastic.logTime(center.getStopWatch().getId(), center.getStopWatch().getTaskInfo(), LOG);
+         for (int i = 0; i < meters.length; ++i) {
+             TimeStastic.logTime(meters[i].getStopWatch().getId(), meters[i].getStopWatch().getTaskInfo(), LOG);
+         }
         ta.reSetIterator();
         return (el - sl);
     }
 
     private static long oneTimeMeterRepTime() throws IOException {
+        LOG.info("oneTimeMeterRepTime");
+        // time stastic init
+        agg.setStopWatch(new StopWatch("agg"));
+        center.setStopWatch(new StopWatch("center"));
+        for (int i = 0; i < meters.length; ++i) {
+            meters[i].setStopWatch(new StopWatch("meter_"+meters[i].getId()));
+        }
 
         long sl = System.nanoTime();
         for (int i = 0; i < Params.METERS_NUM; i++) {
@@ -143,6 +189,13 @@ public class myMain {
             center.getRepMessage(repAgg);
         }
         long el = System.nanoTime();
+
+        // time stastic log output
+        TimeStastic.logTime(agg.getStopWatch().getId(), agg.getStopWatch().getTaskInfo(), LOG);
+        TimeStastic.logTime(center.getStopWatch().getId(), center.getStopWatch().getTaskInfo(), LOG);
+        for (int i = 0; i < meters.length; ++i) {
+            TimeStastic.logTime(meters[i].getStopWatch().getId(), meters[i].getStopWatch().getTaskInfo(), LOG);
+        }
         return (el - sl);
     }
 
