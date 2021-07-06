@@ -132,6 +132,11 @@ public class myMain {
         for (int i = 0; i < meters.length; ++i) {
             TimeStastic.logTime(meters[i].getStopWatch().getId(), meters[i].getStopWatch().getTaskInfo(), LOG);
         }
+        long total = server.getStopWatch().getTotalTimeNanos() + agg.getStopWatch().getTotalTimeNanos();
+        for (Meters x: meters) {
+            total += x.getStopWatch().getTotalTimeNanos();
+        }
+        LOG.info("oneTimeMeterRegTime:{}", total);
         agg.reSetRegMessages();
         return (el - sl);
     }
@@ -159,6 +164,11 @@ public class myMain {
         for (int i = 0; i < meters.length; ++i) {
             TimeStastic.logTime(meters[i].getStopWatch().getId(), meters[i].getStopWatch().getTaskInfo(), LOG);
         }
+        long total = server.getStopWatch().getTotalTimeNanos() + agg.getStopWatch().getTotalTimeNanos();
+        for (Meters x: meters) {
+            total += x.getStopWatch().getTotalTimeNanos();
+        }
+        LOG.info("oneTimeMeterRepTime:{}", total);
         return (el - sl);
     }
 

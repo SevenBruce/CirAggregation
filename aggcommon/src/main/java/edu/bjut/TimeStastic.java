@@ -12,11 +12,11 @@ public class TimeStastic {
         timeBuilder.append(name + ":");
         for (int i = 0; i < infos.length - 1; ++i) {
             nameBuilder.append(infos[i].getTaskName() + ",");
-            timeBuilder.append(infos[i].getTimeMillis() + ",");
+            timeBuilder.append(infos[i].getTimeNanos() + ",");
         }
         if (infos.length > 0) {
             nameBuilder.append(infos[infos.length - 1].getTaskName());
-            timeBuilder.append(infos[infos.length - 1].getTimeMillis());
+            timeBuilder.append(infos[infos.length - 1].getTimeNanos());
         }
         LOG.info(nameBuilder.toString());
         LOG.info(timeBuilder.toString());
