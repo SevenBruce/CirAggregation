@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.util.StopWatch;
 
 import edu.bjut.TimeStastic;
+import edu.bjut.TimeUtils;
 import edu.bjut.cir.messages.MeterRegBack;
 import edu.bjut.cir.messages.MeterRegMessage;
 import edu.bjut.cir.messages.ParamsECC;
@@ -27,7 +28,7 @@ public class myMain {
 
     public static void main(String args[]) throws IOException {
 
-        out = new Out("CircleGroup_May12-1.time");
+        out = new Out("CircleGroup_" + TimeUtils.Now() + ".time");
         ttp = new TTP();
 
         printAndWrite("Circle aggregation");
@@ -246,6 +247,12 @@ public class myMain {
         }
         TimeStastic.logTime(supplier.getStopWatch().getId(), supplier.getStopWatch().getTaskInfo(), LOG);
         TimeStastic.logTime(ttp.getStopWatch().getId(), ttp.getStopWatch().getTaskInfo(), LOG);
+        // total
+        long total = supplier.getStopWatch().getTotalTimeNanos() + ttp.getStopWatch().getTotalTimeNanos();
+        for (Meter m: meter) {
+            total += m.getStopWatch().getTotalTimeNanos();
+        }
+        LOG.debug("meterRegTime_{}:{}", k, total);
         return (el - sl);
     }
 
@@ -274,6 +281,12 @@ public class myMain {
         }
         TimeStastic.logTime(agg.getStopWatch().getId(), agg.getStopWatch().getTaskInfo(), LOG);
         TimeStastic.logTime(supplier.getStopWatch().getId(), supplier.getStopWatch().getTaskInfo(), LOG);
+        // total
+        long total = agg.getStopWatch().getTotalTimeNanos() + supplier.getStopWatch().getTotalTimeNanos();
+        for (Meter m: meter) {
+            total += m.getStopWatch().getTotalTimeNanos();
+        }
+        LOG.debug("meterRepTime:{}", total);
         return (el - sl);
     }
 

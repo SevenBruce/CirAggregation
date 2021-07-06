@@ -5,10 +5,12 @@ suffix='jar-with-dependencies'
 prefix='.m2/repository/edu/bjut/'
 prog='boudia ciragg homoagg ni'
 exec='java'
-for x in $prog
+for i in {1..100}
 do
-    # java -jar $prefix$x/$version/$x-$version-$suffix.jar
-    # java -jar $f
-    echo $HOME/$prefix$x/$version/$x-$version-$suffix.jar
-    java -jar $HOME/$prefix$x/$version/$x-$version-$suffix.jar
+    echo $i
+    for x in $prog
+    do
+        echo $HOME/$prefix$x/$version/$x-$version-$suffix.jar
+        java -jar $HOME/$prefix$x/$version/$x-$version-$suffix.jar
+    done
 done

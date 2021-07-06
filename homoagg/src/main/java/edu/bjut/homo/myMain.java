@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.util.StopWatch;
 
 import edu.bjut.TimeStastic;
+import edu.bjut.TimeUtils;
 import edu.bjut.homo.messages.ParamsECC;
 import edu.bjut.homo.messages.PublicInfo;
 import edu.bjut.homo.messages.RegBack;
@@ -25,7 +26,7 @@ public class myMain {
 
     public static void main(String args[]) throws IOException {
 
-        out = new Out("Homo_cirAgg_2020May5_4.time");
+        out = new Out("Homo_" + TimeUtils.Now() + ".time");
 
         entitiesInitialization();
         serverRegistration();
@@ -161,6 +162,12 @@ public class myMain {
         for (int i = 0; i < sm.length; ++i) {
             TimeStastic.logTime(sm[i].getStopWatch().getId(), sm[i].getStopWatch().getTaskInfo(), LOG);
         }
+        // total
+        long total = kgc.getStopWatch().getTotalTimeNanos(); 
+        for (SmartMeter s: sm) {
+            total += s.getStopWatch().getTotalTimeNanos();
+        }
+        LOG.debug("meterRegTime:{}", total);
         return (el - sl);
     }
 
@@ -185,6 +192,12 @@ public class myMain {
         for (int i = 0; i < sm.length; ++i) {
             TimeStastic.logTime(sm[i].getStopWatch().getId(), sm[i].getStopWatch().getTaskInfo(), LOG);
         }
+        // total
+        long total = agg.getStopWatch().getTotalTimeNanos() + server.getStopWatch().getTotalTimeNanos();
+        for (SmartMeter s: sm) {
+            total += s.getStopWatch().getTotalTimeNanos();
+        }
+        LOG.debug("oneTimeMeterRepTime:{}", total);
         return (el - sl);
     }
 

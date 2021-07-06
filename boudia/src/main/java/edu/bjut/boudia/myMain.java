@@ -11,6 +11,7 @@ import edu.bjut.boudia.messages.RegMessageFromServer2User;
 import edu.bjut.boudia.messages.RepMessage2;
 import it.unisa.dia.gas.jpbc.Element;
 import edu.bjut.TimeStastic;
+import edu.bjut.TimeUtils;
 
 public class myMain {
 
@@ -22,7 +23,7 @@ public class myMain {
 
     public static void main(String args[]) throws IOException {
 
-        out = new Out("Boudia_cirAgg_May2st4.time");
+        out = new Out("Boudia_" + TimeUtils.Now() + ".time");
 
         entitiesInitialization();
         aggRegistration();
@@ -132,11 +133,12 @@ public class myMain {
         for (int i = 0; i < meters.length; ++i) {
             TimeStastic.logTime(meters[i].getStopWatch().getId(), meters[i].getStopWatch().getTaskInfo(), LOG);
         }
+        // total
         long total = server.getStopWatch().getTotalTimeNanos() + agg.getStopWatch().getTotalTimeNanos();
         for (Meters x: meters) {
             total += x.getStopWatch().getTotalTimeNanos();
         }
-        LOG.info("oneTimeMeterRegTime:{}", total);
+        LOG.debug("oneTimeMeterRegTime:{}", total);
         agg.reSetRegMessages();
         return (el - sl);
     }
@@ -164,11 +166,12 @@ public class myMain {
         for (int i = 0; i < meters.length; ++i) {
             TimeStastic.logTime(meters[i].getStopWatch().getId(), meters[i].getStopWatch().getTaskInfo(), LOG);
         }
+        // total
         long total = server.getStopWatch().getTotalTimeNanos() + agg.getStopWatch().getTotalTimeNanos();
         for (Meters x: meters) {
             total += x.getStopWatch().getTotalTimeNanos();
         }
-        LOG.info("oneTimeMeterRepTime:{}", total);
+        LOG.debug("oneTimeMeterRepTime:{}", total);
         return (el - sl);
     }
 
