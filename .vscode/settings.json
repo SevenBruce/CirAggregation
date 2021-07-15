@@ -1,3 +1,4 @@
 {
-    "java.configuration.updateBuildConfiguration": "automatic"
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "python.pythonPath": "/usr/local/Caskroom/miniconda/base/envs/sci/bin/python"
 }
