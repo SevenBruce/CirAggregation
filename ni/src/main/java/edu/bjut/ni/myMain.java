@@ -32,7 +32,7 @@ public class myMain {
 
         out.close();
 
-        out = new Out("Ni2017_cirAgg_2020May17_2.time");
+        out = new Out("Ni_" + TimeUtils.Now() +"time");
 
         dataAggPhase1();
 
