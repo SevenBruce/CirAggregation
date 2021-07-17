@@ -7,7 +7,6 @@ public class MeterRegMessage {
     private Element ri;
     
     public MeterRegMessage(long id, Element ri) {
-        super();
         this.id = id;
         this.ri = ri;
     }
