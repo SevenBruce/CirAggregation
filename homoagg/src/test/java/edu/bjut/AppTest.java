@@ -29,7 +29,7 @@ public class AppTest {
         // BigInteger x = Utils.randomBig(pairing.getG1().getOrder());
         // Element y = g.mul(x);
         // PairingFactory.getInstance().setReuseInstance(false);
-        for (int step = 200; step > 10; step -= 10) {
+        for (int step = 20; step > 10; step -= 10) {
             int len = step;
             List<Long> ids = new ArrayList<>();
             for (int i = 0; i < len; ++i) {
