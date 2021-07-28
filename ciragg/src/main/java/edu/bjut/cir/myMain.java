@@ -33,11 +33,11 @@ public class myMain {
 
         printAndWrite("Circle aggregation");
 
-        aggPhaseWithVaryingMeters();
+        // aggPhaseWithVaryingMeters();
 
         aggPhaseWithVaryingK();
 
-        aggPhaseWithVaryingRange();
+        // aggPhaseWithVaryingRange();
         // Runtime.getRuntime().exec("shutdown -s");
         out.close();
     }
