@@ -35,9 +35,9 @@ public class myMain {
 
         // aggPhaseWithVaryingMeters();
 
-        aggPhaseWithVaryingK();
+        // aggPhaseWithVaryingK();
 
-        // aggPhaseWithVaryingRange();
+        aggPhaseWithVaryingRange();
         // Runtime.getRuntime().exec("shutdown -s");
         out.close();
     }
