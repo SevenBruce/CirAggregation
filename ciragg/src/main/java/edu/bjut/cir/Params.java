@@ -17,9 +17,9 @@ public class Params {
     
     
     public static int DEFAULT_RANGE_SIZE = 5;
-    public static int RANGE_SIZE_ARRAY[] = {10,9,8,7,6,5,4,3,2}; /* number of smart meters */
+    public static int RANGE_SIZE_ARRAY[] = {10,10,10,10,10,9,8,7,6,5,4,3,2}; /* number of smart meters */
     public static int RANGE_SIZE;
     
-    public static int k_Anonymity[] = {20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2}; /* number of smart meters */
+    public static int k_Anonymity[] = {20,20,20,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2}; /* number of smart meters */
     public static int DEFAULT_K_ANONYMITY = 3; /* number of smart meters */
 }
