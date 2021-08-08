@@ -1,6 +1,6 @@
 # Circle Aggregation
 
-## Prepare
+## Prerequisite
 
 ### Java
 
