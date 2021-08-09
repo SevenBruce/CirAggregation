@@ -1,0 +1,56 @@
+experiment running time : 2021-07-21 02:33:09
+Circle aggregation
+reg time with meters number : 60
+840.5178
+rep time with meters number : 60
+436.619
+reg time with meters number : 50
+685.2521
+rep time with meters number : 50
+348.4565
+reg time with meters number : 40
+544.2168
+rep time with meters number : 40
+276.2989
+reg time with meters number : 30
+404.1638
+rep time with meters number : 30
+208.6321
+reg time with meters number : 20
+274.8441
+rep time with meters number : 20
+143.2834
+
+reg time with K : 2
+269.3712
+rep time with K : 2
+108.8796
+reg time with K : 3
+269.3909
+rep time with K : 3
+131.7271
+reg time with K : 4
+269.11
+rep time with K : 4
+134.2067
+reg time with K : 5
+271.1654
+rep time with K : 5
+135.278
+reg time with K : 6
+272.0763
+rep time with K : 6
+136.3655
+
+rep time with range : 2
+140.0381
+rep time with range : 3
+136.494
+rep time with range : 4
+138.131
+rep time with range : 5
+138.3324
+rep time with range : 6
+138.7503
+
+experiment running time : 2021-07-21 02:33:42

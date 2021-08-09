@@ -1,0 +1,106 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Launch App",
+            "request": "launch",
+            "mainClass": "edu.bjut.App",
+            "projectName": "aggcommon"
+        },
+        {
+            "type": "java",
+            "name": "Launch In",
+            "request": "launch",
+            "mainClass": "edu.bjut.boudia.In",
+            "projectName": "boudia"
+        },
+        {
+            "type": "java",
+            "name": "Launch Out",
+            "request": "launch",
+            "mainClass": "edu.bjut.boudia.Out",
+            "projectName": "boudia"
+        },
+        {
+            "type": "java",
+            "name": "Launch myMain",
+            "request": "launch",
+            "mainClass": "edu.bjut.boudia.myMain",
+            "projectName": "boudia"
+        },
+        {
+            "type": "java",
+            "name": "Launch In(1)",
+            "request": "launch",
+            "mainClass": "edu.bjut.cir.In",
+            "projectName": "ciragg"
+        },
+        {
+            "type": "java",
+            "name": "Launch Out(1)",
+            "request": "launch",
+            "mainClass": "edu.bjut.cir.Out",
+            "projectName": "ciragg"
+        },
+        {
+            "type": "java",
+            "name": "Launch myMain(1)",
+            "request": "launch",
+            "mainClass": "edu.bjut.cir.myMain",
+            "projectName": "ciragg",
+            "vmArgs": "--illegal-access=deny"
+        },
+        {
+            "type": "java",
+            "name": "Launch In(2)",
+            "request": "launch",
+            "mainClass": "edu.bjut.homo.In",
+            "projectName": "homoagg"
+        },
+        {
+            "type": "java",
+            "name": "Launch Out(2)",
+            "request": "launch",
+            "mainClass": "edu.bjut.homo.Out",
+            "projectName": "homoagg"
+        },
+        {
+            "type": "java",
+            "name": "Launch myMain(2)",
+            "request": "launch",
+            "mainClass": "edu.bjut.homo.myMain",
+            "projectName": "homoagg"
+        },
+        {
+            "type": "java",
+            "name": "Launch In(3)",
+            "request": "launch",
+            "mainClass": "edu.bjut.ni.In",
+            "projectName": "ni"
+        },
+        {
+            "type": "java",
+            "name": "Launch Out(3)",
+            "request": "launch",
+            "mainClass": "edu.bjut.ni.Out",
+            "projectName": "ni"
+        },
+        {
+            "type": "java",
+            "name": "Launch myMain(3)",
+            "request": "launch",
+            "mainClass": "edu.bjut.ni.myMain",
+            "projectName": "ni"
+        }
+    ]
+}
